@@ -8,15 +8,15 @@ class Die(QLabel):
         """Constructor.
         """
         super().__init__()
-        self.value = None
+        self._value = None
 
     def roll(self) -> None:
         """Roll the die and update its image.
         :return: None
         """
-        self.value = randint(1, 6)
+        self._value = randint(1, 6)
 
-        match self.value:
+        match self._value:
             case 1:
                 image = 'one.jpeg'
             case 2:
@@ -34,8 +34,9 @@ class Die(QLabel):
 
         self.setPixmap(QPixmap('images/' + image).scaledToWidth(100))
 
-    def get_value(self) -> int:
+    @property
+    def value(self) -> int:
         """Get the die's value.
         :return: int
         """
-        return self.value
+        return self._value
